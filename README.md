@@ -34,8 +34,8 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 
 ### System Diagram
 ```
-┌───────────────┐    HTTP/WebSocket    ┌───────────────┐    Serial USB    ┌───────────────┐
-│ Web Browser   │ ◄──────────────────►│ Python Flask  │◄───────────────►│ Arduino Uno   │
+┌───────────────┐    HTTP/WebSocket   ┌───────────────┐    Serial USB   ┌───────────────┐
+│ Web Browser   │ ◄──────────────────►│ Python Flask  │◄───────────────► │ Arduino Uno   │
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
