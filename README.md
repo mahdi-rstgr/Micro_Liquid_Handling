@@ -3,20 +3,10 @@
 ![Peristaltic Pump and Control UI](Software/PumpControlSystem/Dashboard/UI.png)
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [Project Overview](#project-overview)
-- [Hardware Design](#hardware-design)
-- [Mechanical & CAD Files](#mechanical--cad-files)
-- [Software Architecture](#software-architecture)
-- [Installation & Setup](#installation--setup)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Technical Specifications](#technical-specifications)
-- [Future Development](#future-development)
-- [Important Notes](#important-notes)
 
-## Introduction
 
+# Micro Liquid Handling System
+![Liquid Handling Setup](Hardware/images/Liquid_Handling_Setup.png)
 This project presents a novel peristaltic pump system for pharmaceutical liquid handling, capable of dispensing fluids with viscosities ranging from 1 cP to 60,000 cP. The system integrates advanced solid and fluid mechanics in its mechanical design, optimized for uniform flow rate and precise dispensing. The pump and its control interface are shown below:
 
 ![Exploded View of Peristaltic Pump](Hardware/images/Peristaltic_pump_exploded_view.png)
@@ -26,10 +16,6 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 - **Novel Mechanical Design:** The pump geometry is optimized for uniform flow and precision, supporting a wide viscosity range.
 - **Patent & Publication:** CAD files and a link to the scientific paper will be uploaded after patent and publication (CAD folder is currently empty).
 - **Integrated Hardware & Software:** Combines custom hardware, Arduino firmware, and a modern web-based UI for control.
-
-## Hardware Design
-
-- **Controller:** Arduino Uno (or compatible)
 - **Drivers:** 4x DRV8825 stepper motor drivers
 - **Motors:** 4x NEMA 17 stepper motors
 - **Pump Heads:** 4-roller peristaltic design
