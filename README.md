@@ -1,11 +1,4 @@
 # Micro Liquid Handling System
-
-![Peristaltic Pump and Control UI](Software/PumpControlSystem/Dashboard/UI.png)
-
-## Table of Contents
-
-
-# Micro Liquid Handling System
 ![Liquid Handling Setup](Hardware/images/Liquid_Handling_Setup.png)
 This project presents a novel peristaltic pump system for pharmaceutical liquid handling, capable of dispensing fluids with viscosities ranging from 1 cP to 60,000 cP. The system integrates advanced solid and fluid mechanics in its mechanical design, optimized for uniform flow rate and precise dispensing. The pump and its control interface are shown below:
 
