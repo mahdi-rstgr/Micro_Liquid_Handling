@@ -108,6 +108,21 @@ Micro_Liquid_Handling/
 └── README.md
 ```
 
+## User Interface
+
+The Micro Liquid Handling System features a modern, web-based dashboard for intuitive control of the peristaltic pumps. The user interface allows:
+
+- Setting and adjusting the RPM (rotations per minute) for each pump
+- Specifying dispensing time for precise liquid handling
+- Enabling/disabling continuous operation mode
+- Starting and stopping pumps individually or in batch
+- Monitoring real-time status and feedback
+- Emergency stop for immediate shutdown of all pumps
+
+Below is a screenshot of the user interface:
+
+![Pump Control System UI](Software/PumpControlSystem/Dashboard/UI.png)
+
 ## Technical Specifications
 
 - **Viscosity Range:** 1–60,000 cP
