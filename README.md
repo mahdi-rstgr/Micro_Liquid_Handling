@@ -52,7 +52,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
-<img src="Hardware/images/Peristaltic Pump Schematic.png" alt="Pump Schematic" width="40%"/>
+<img src="Hardware/images/Peristaltic_pump_schematic.png" alt="Pump Schematic" width="40%"/>
 
 
 ---
