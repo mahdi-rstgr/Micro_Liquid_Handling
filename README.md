@@ -26,11 +26,13 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
   - Pump Z: Step=4, Dir=7, Enable=8
   - Pump A: Step=12, Dir=13, Enable=8
 
+---
+
 ## Mechanical & CAD Files
 
 - **CAD Folder:** `Hardware/CAD/` (currently empty; files will be uploaded post-publication)
 - **Images:**
-![Pump Schematic](Hardware/images/Persitaltic_pump_schematic.png width="60%")
+![Pump Schematic](Hardware/images/Peristaltic Pump Schematic.png){width=70%}
 
 ## Software Architecture
 
@@ -46,7 +48,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
-![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png width="60%")
+![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png){width=70%}
 
 ## Installation & Setup
 
