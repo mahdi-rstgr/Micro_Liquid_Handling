@@ -32,7 +32,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 
 - **CAD Folder:** `Hardware/CAD/` (currently empty; files will be uploaded post-publication)
 
-![Pump Schematic](Hardware/images/Peristaltic Pump Schematic.png)
+![Pump Schematic](Hardware/images/Peristaltic_pump_schematic.png)
 
 ---
 
