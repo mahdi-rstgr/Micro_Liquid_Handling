@@ -32,7 +32,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 
 - **CAD Folder:** `Hardware/CAD/` (currently empty; files will be uploaded post-publication)
 
-![Pump Schematic](Hardware/images/Persitaltic_pump_schematic.png)
+<img src="Hardware/images/Persitaltic_pump_schematic.png" alt="Pump Schematic" width="70%">
 
 ---
 
@@ -52,7 +52,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
-![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png)
+<img src="Hardware/images/Arduino_UNO_CNC_Shield.png" alt="Arduino UNO CNC Shield" width="70%">
 
 ---
 
