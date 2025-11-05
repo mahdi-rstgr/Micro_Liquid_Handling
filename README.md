@@ -52,9 +52,8 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
-<img src="Hardware/images/Peristaltic Pump Schematic.png" alt="Pump Schematic" width="50%"/>
+<img src="Hardware/images/Peristaltic Pump Schematic.png" alt="Pump Schematic" width="40%"/>
 
-![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png){width=70%}
 
 ---
 
