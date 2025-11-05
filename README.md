@@ -34,12 +34,16 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 - **Images:**
 ![Pump Schematic](Hardware/images/Peristaltic Pump Schematic.png){width=70%}
 
+---
+
 ## Software Architecture
 
 - **Frontend:** Responsive web dashboard (HTML/CSS/JS)
 - **Backend:** Python Flask server (`main.py`, `serial_handler.py`)
 - **Firmware:** Arduino sketch (`PumpController.ino`)
 - **Serial Communication:** Robust USB protocol between Python and Arduino
+
+---
 
 ### System Diagram
 ```
@@ -48,7 +52,11 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
+<img src="Hardware/images/Peristaltic Pump Schematic.png" alt="Pump Schematic" width="50%"/>
+
 ![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png){width=70%}
+
+---
 
 ## Installation & Setup
 
@@ -75,6 +83,8 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 6. **Access UI:**
 	- Open browser at `http://localhost:5000`
 
+---
+
 ## Usage
 
 - **Web Dashboard:**
@@ -86,6 +96,8 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
   - `STOP,X` (Stop pump X)
   - `EMERGENCY` (Stop all pumps)
   - `STATUS` (Get status)
+
+---
 
 ## Project Structure
 
@@ -111,6 +123,8 @@ Micro_Liquid_Handling/
 └── README.md
 ```
 
+---
+
 ## User Interface
 
 The Micro Liquid Handling System features a modern, web-based dashboard for intuitive control of the peristaltic pumps. The user interface allows:
@@ -126,6 +140,8 @@ Below is a screenshot of the user interface:
 
 ![Pump Control System UI](Software/PumpControlSystem/Dashboard/UI.png)
 
+---
+
 ## Technical Specifications
 
 - **Viscosity Range:** 1–60,000 cP
@@ -135,6 +151,8 @@ Below is a screenshot of the user interface:
 - **API:** RESTful JSON, 2s polling
 - **Supported OS:** Windows, macOS, Linux
 
+---
+
 ## Future Development
 
 - Volume dispensing calibration
@@ -142,6 +160,8 @@ Below is a screenshot of the user interface:
 - Flow sensors and PID control
 - Data logging and analytics
 - Mobile and cloud connectivity
+
+---
 
 ## Important Notes
 
