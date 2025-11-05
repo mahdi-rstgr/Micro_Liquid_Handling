@@ -1,8 +1,15 @@
 # Micro Liquid Handling System
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)   [![Build Status](https://img.shields.io/badge/Status-Active-success)](#)  
+
 ![Liquid Handling Setup](Hardware/images/Peristaltic_Pump_Assembly.png)
+
+---
+
 This project presents a novel peristaltic pump system for pharmaceutical liquid handling, capable of dispensing fluids with viscosities ranging from 1 cP to 60,000 cP. The system integrates advanced solid and fluid mechanics in its mechanical design, optimized for uniform flow rate and precise dispensing. The pump and its control interface are shown below:
 
 ![Exploded View of Peristaltic Pump](Hardware/images/Peristaltic_pump_exploded_view.png)
+
+---
 
 ## Project Overview
 
@@ -23,7 +30,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 
 - **CAD Folder:** `Hardware/CAD/` (currently empty; files will be uploaded post-publication)
 - **Images:**
-![Pump Schematic](Hardware/images/Persitaltic_pump_schematic.png)
+![Pump Schematic](Hardware/images/Persitaltic_pump_schematic.png width="60%")
 
 ## Software Architecture
 
@@ -39,7 +46,7 @@ This project presents a novel peristaltic pump system for pharmaceutical liquid 
 │ (Frontend)    │                     │ (Backend)     │                  │ (Controller)  │
 └───────────────┘                     └───────────────┘                  └───────────────┘
 ```
-![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png)
+![Pump Schematic](Hardware/images/Arduino_UNO_CNC_Shield.png width="60%")
 
 ## Installation & Setup
 
