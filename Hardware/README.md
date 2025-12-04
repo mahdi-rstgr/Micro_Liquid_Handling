@@ -12,7 +12,7 @@ Parametric 3D gear generation framework with mathematical validation and CAD exp
 A comprehensive framework for generating planetary gear assemblies with involute tooth profiles, constraint validation, and multi-format export capabilities. Built on CadQuery and OpenCascade OCCT for professional CAD-grade precision.
 
 <p align="center">
-  <img src="output/planetary_gear_set.png" width="60%">
+  <img src="Hardware/CAD/output/planetary_gear_set.png" width="60%">
 </p>
 <p align="center">
   <img src="output/hb_planetary_gearset.png" height="250px" style="margin-right:10px;" />
