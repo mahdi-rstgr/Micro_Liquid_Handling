@@ -28,7 +28,7 @@ This enables rapid iteration and fully customized pump geometries without manual
 
 | Pump Render | Dashboard UI |
 |------------|--------------|
-| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="1"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="1"/> |
+| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="200"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="200"/> |
 
 
 <p align="center">
