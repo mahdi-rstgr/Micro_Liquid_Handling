@@ -9,11 +9,7 @@ Unlike conventional peristaltic pumps, this design uses a planetary gear assembl
 - **Enable multi-channel operation with a single stepper motor**
 
 <p align="center">
-  <img src="images/Peristaltic_Pump_Assembly.png" alt="Peristaltic Pump Assembly" width="70%">
-</p>
-
-<p align="center">
-  <img src="images/Peristaltic_pump_exploded_view.png" alt="Exploded View" width="60%">
+  <img src="images/sun_planets.png" alt="Exploded View" width="60%">
 </p>
 
 ---
@@ -29,6 +25,11 @@ A Python script automatically generates the pump's complete 3D CAD model using i
 - **Channel count configuration**
 
 This enables rapid iteration and fully customized pump geometries without manual CAD work.
+
+| Pump Render | Dashboard UI |
+|------------|--------------|
+| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="1"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="1"/> |
+
 
 <p align="center">
   <img src="images/gear_design_3d.png" alt="3D Gear Design" width="45%" style="margin-right:10px;" />
