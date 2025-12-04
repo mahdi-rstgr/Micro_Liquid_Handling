@@ -1,0 +1,15 @@
+# CadQuery Planetary Gear System Requirements
+# Core dependencies for gear generation and 3D modeling
+
+cadquery>=2.6.0
+numpy>=1.20.0
+scipy>=1.7.0
+
+# Optional dependencies for visualization and notebooks
+jupyter>=1.0.0
+jupyter-cadquery>=3.0.0
+matplotlib>=3.5.0
+
+# Development dependencies (optional)
+pytest>=6.0.0
+black>=22.0.0

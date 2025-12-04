@@ -1,0 +1,13 @@
+Planetary Gear System - Technical Information
+==================================================
+
+Object Type: <class 'cadquery.occ_impl.shapes.Compound'>
+Volume: 19030.06 mm³
+Dimensions: 62.60 x 62.60 x 10.36 mm
+
+Gear Specifications:
+- Sun Gear: 20 teeth
+- Planet Gears: 16 teeth each (4 planets)
+- Ring Gear: 52 teeth
+- Module: 1.0 mm
+- Ring Alignment Factor: 0.5
