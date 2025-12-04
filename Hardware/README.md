@@ -170,41 +170,16 @@ Hardware/
 
 ---
 
-## **Arduino Integration**
-
-<p align="center">
-  <img src="images/Arduino_UNO_CNC_Shield.png" alt="Arduino UNO CNC Shield" width="60%">
-</p>
-
-The mechanical system integrates seamlessly with the Arduino-based control system:
-- **4x DRV8825 stepper drivers**
-- **4x NEMA 17 stepper motors** 
-- **12V, 1.5A power supply**
-- **Precise RPM control via planetary reduction**
-
----
-
-## **Future Development**
-
-- **Multi-material printing support**
-- **Bearing integration options**
-- **Fluid dynamics optimization**
-- **Automated tolerance calculation**
-- **Real-time gear mesh analysis**
-
----
-
 *This parametric CAD system enables rapid prototyping and customization of geared peristaltic pump mechanisms for pharmaceutical and research applications.*
 │   ├── *.step                   # CAD interchange
 │   ├── *.png                    # Documentation images
 │   └── *.svg                    # Technical drawings
 ├── requirements.txt               # Dependencies
 └── README.md                      # Documentation
-```
 
 ## Gear Generation Pipeline
 
-```mermaid
+mermaid
 flowchart TD
     A[Input Parameters] --> B{Constraint Validation}
     B -->|Valid| C[Calculate Geometry]
@@ -217,7 +192,6 @@ flowchart TD
     I --> J[Apply Tolerances]
     J --> K[Export Formats]
     K --> L[Output Files]
-```
 
 ### Algorithm Steps
 
