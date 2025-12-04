@@ -26,7 +26,7 @@ A Python script automatically generates the pump's complete 3D CAD model using i
 
 This enables rapid iteration and fully customized pump geometries without manual CAD work.
 
-| 2D Design | Spur Planetary | Herringbone Planetary
+| 2D Design | Spur Planetary (SolidWorks Render) | Herringbone Planetary (SolidWorks Render)
 |------------|--------------|--------------|
 | <img src="images/gear_design_2d.png" alt="2D Gear Design" height="400"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="400"/> | <img src="images/Herringbone Planetary Gearset.png" alt="Herringbone Planetary Gearset" height="400"/> |
 
@@ -45,10 +45,6 @@ This allows the entire gear–pump assembly to print as a single part.
 
 <p align="center">
   <img src="images/gear_design_3d_printed.jpg" alt="3D Printed Gear Assembly" width="70%">
-</p>
-
-<p align="center">
-  <img src="images/Persitaltic_pump_schematic.png" alt="Pump Schematic" width="80%">
 </p>
 
 ---
