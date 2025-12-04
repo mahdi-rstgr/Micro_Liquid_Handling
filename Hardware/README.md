@@ -1,27 +1,68 @@
-# CadQuery Planetary Gear System Generator
+# 🔧 Mechanical System
+**Novel Geared Peristaltic Mechanism**
 
-Parametric 3D gear generation framework with mathematical validation and CAD export capabilities.
+Unlike conventional peristaltic pumps, this design uses a planetary gear assembly to:
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![CadQuery](https://img.shields.io/badge/CadQuery-2.6+-orange.svg)](https://cadquery.readthedocs.io/)
-[![OpenCascade](https://img.shields.io/badge/OpenCascade-7.0+-green.svg)](https://www.opencascade.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-## Overview
-
-A comprehensive framework for generating planetary gear assemblies with involute tooth profiles, constraint validation, and multi-format export capabilities. Built on CadQuery and OpenCascade OCCT for professional CAD-grade precision.
+- **Increase available torque**
+- **Maintain consistent roller compression**
+- **Improve RPM stability under load**
+- **Enable multi-channel operation with a single stepper motor**
 
 <p align="center">
-  <img src="images/gear_design_3d_printed.jpg" width="60%">
+  <img src="images/Peristaltic_Pump_Assembly.png" alt="Peristaltic Pump Assembly" width="70%">
 </p>
+
 <p align="center">
-  <img src="images/hb_planetary_gearset.png" height="250px" style="margin-right:10px;" />
-  <img src="images/planetary_printable_D60_C2.0.png" height="250px" />
+  <img src="images/Peristaltic_pump_exploded_view.png" alt="Exploded View" width="60%">
 </p>
 
+---
 
+## **Parametric CAD Generation (CadQuery)**
 
-## System Architecture
+A Python script automatically generates the pump's complete 3D CAD model using input parameters:
+
+- **Pump ring diameter**
+- **Stepper motor shaft diameter (sun bore)**
+- **Number of rollers (planets)**
+- **Clearance and resolution constraints for single-piece 3D printing**
+- **Channel count configuration**
+
+This enables rapid iteration and fully customized pump geometries without manual CAD work.
+
+<p align="center">
+  <img src="images/gear_design_3d.png" alt="3D Gear Design" width="45%" style="margin-right:10px;" />
+  <img src="images/gear_design_2d.png" alt="2D Gear Design" width="45%" />
+</p>
+
+<p align="center">
+  <img src="images/Herringbone Planetary Gearset.png" alt="Herringbone Planetary Gearset" width="60%">
+</p>
+
+---
+
+## 🖨️ **3D Printing Optimization**
+
+The geometry is auto-adjusted by the Python script to ensure:
+
+- **Proper minimum wall thickness for 0.4 mm nozzles**
+- **Controlled tolerances for rotational clearance**
+- **Print-in-place mechanics with no post-assembly**
+- **Compatibility with PLA/ABS/PETG**
+
+This allows the entire gear–pump assembly to print as a single part.
+
+<p align="center">
+  <img src="images/gear_design_3d_printed.jpg" alt="3D Printed Gear Assembly" width="70%">
+</p>
+
+<p align="center">
+  <img src="images/Persitaltic_pump_schematic.png" alt="Pump Schematic" width="80%">
+</p>
+
+---
+
+## **System Architecture**
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -35,7 +76,7 @@ A comprehensive framework for generating planetary gear assemblies with involute
                        └─────────────────┘
 ```
 
-### Generated Assemblies
+### **Generated Assemblies**
 - **Complete Planetary**: 4-Planet system (Sun: 20T, Planets: 16T, Ring: 52T)
 - **Printable Version**: Scaled with manufacturing tolerances
 - **Herringbone**: Double-helical design for axial force cancellation
@@ -48,65 +89,112 @@ A comprehensive framework for generating planetary gear assemblies with involute
 <tr>
 <td width="33%" align="center">
 
-### ⚙️ **Gear Varieties**
-🔹 **Spur Gears** - Standard straight-cut<br>
-🔹 **Helical Gears** - Angled for smooth operation<br>
-🔹 **Herringbone Gears** - Double-helical design<br>
-🔹 **Ring Gears** - Internal gears for planetary systems<br>
-🔹 **Complete Assemblies** - Ready-to-print systems
+### **Mathematical Precision**
+- Involute tooth profiles
+- Constraint validation
+- Gear ratio optimization
+- Clearance calculations
 
 </td>
 <td width="33%" align="center">
 
-### 🔬 **Mathematical Precision**
-📐 **Involute Tooth Profiles** - True gear geometry<br>
-📏 **Parametric Design** - Fully configurable<br>
-🎯 **Auto Meshing** - Perfect tooth alignment<br>
-📊 **Constraint Validation** - Prevents impossible configs<br>
-🔢 **Scaling Systems** - Maintain ratios perfectly
+### **Manufacturing Ready**
+- 3D print tolerances
+- Material compatibility
+- Print-in-place design
+- Single-piece assembly
 
 </td>
 <td width="33%" align="center">
 
-### 🖨️ **3D Print Ready**
-🔧 **Tolerance Control** - Adjustable clearances<br>
-🎛️ **Support-Free Design** - Optimized geometry<br>
-📦 **Multiple Formats** - STL, STEP, PNG export<br>
-🎨 **Visualization** - Interactive 3D preview<br>
-⚡ **Rapid Prototyping** - From code to print
+### **Export Flexibility**
+- STL/STEP formats
+- PNG/SVG documentation
+- Assembly files
+- Individual components
 
 </td>
 </tr>
 </table>
 
-## Dependencies & Requirements
+---
 
-### Core Framework
-- **CadQuery 2.6+**: Parametric CAD modeling engine
-- **OpenCascade OCCT 7.0+**: Professional geometry kernel
-- **Python 3.8+**: Runtime environment
+## **Quick Start**
 
-### Mathematical Libraries
-- **NumPy**: Array operations and mathematical functions
-- **SciPy**: Advanced mathematical computations
+1. **Configure Environment**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Visualization (Optional)
-- **jupyter-cadquery 4.0+**: 3D visualization and PNG export
-- **Matplotlib**: 2D plotting and technical drawings
+2. **Generate Gears**:
+   ```python
+   python examples/Planetary_gear_system.py
+   ```
 
-## Project Structure
+3. **Export for 3D Printing**:
+   - Files saved to `output/` directory
+   - Ready-to-print STL files
+   - Technical documentation included
+
+---
+
+## **Project Structure**
 
 ```
-Peristaltic_pump/
-├── src/                           # Core library modules
-│   ├── __init__.py               # Package initialization
-│   ├── utilization.py           # Geometry utilities
-│   ├── spur_gear.py             # Base gear classes
-│   └── Ring_gear.py             # Ring gears and assemblies
-├── examples/                      # Implementation examples
-│   └── Planetary_gear_system.ipynb  # Complete tutorial
-├── output/                        # Generated files
-│   ├── *.stl                    # 3D printable models
+Hardware/
+├── CAD/
+│   ├── src/                    # Core gear generation modules
+│   │   ├── Ring_gear.py       # Ring gear implementation
+│   │   ├── spur_gear.py       # Spur gear base class
+│   │   └── utilization.py     # Utility functions
+│   ├── examples/              # Jupyter notebooks
+│   │   ├── Planetary_gear_system.ipynb
+│   │   └── PG_4P_PMP.ipynb    # 4-Planet Pump design
+│   ├── output/                # Generated STL/STEP files
+│   └── requirements.txt       # Python dependencies
+├── images/                    # Documentation images
+└── README.md                  # This file
+```
+
+---
+
+## **Technical Specifications**
+
+| Parameter | Range | Optimized Value |
+|-----------|-------|-----------------|
+| **Module** | 0.5-5.0 mm | 1.0 mm |
+| **Helix Angle** | 0-45° | 30° |
+| **Backlash** | 0.1-1.0 mm | 0.3 mm |
+| **Print Clearance** | 0.1-0.5 mm | 0.2 mm |
+| **Bore Diameter** | 3-20 mm | 6.0 mm |
+
+---
+
+## **Arduino Integration**
+
+<p align="center">
+  <img src="images/Arduino_UNO_CNC_Shield.png" alt="Arduino UNO CNC Shield" width="60%">
+</p>
+
+The mechanical system integrates seamlessly with the Arduino-based control system:
+- **4x DRV8825 stepper drivers**
+- **4x NEMA 17 stepper motors** 
+- **12V, 1.5A power supply**
+- **Precise RPM control via planetary reduction**
+
+---
+
+## **Future Development**
+
+- **Multi-material printing support**
+- **Bearing integration options**
+- **Fluid dynamics optimization**
+- **Automated tolerance calculation**
+- **Real-time gear mesh analysis**
+
+---
+
+*This parametric CAD system enables rapid prototyping and customization of geared peristaltic pump mechanisms for pharmaceutical and research applications.*
 │   ├── *.step                   # CAD interchange
 │   ├── *.png                    # Documentation images
 │   └── *.svg                    # Technical drawings
