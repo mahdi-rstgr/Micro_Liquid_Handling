@@ -28,13 +28,7 @@ This enables rapid iteration and fully customized pump geometries without manual
 
 | Pump Render | Dashboard UI |
 |------------|--------------|
-| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="200"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="200"/> |
-
-
-<p align="center">
-  <img src="images/gear_design_3d.png" alt="3D Gear Design" width="45%" style="margin-right:10px;" />
-  <img src="images/gear_design_2d.png" alt="2D Gear Design" width="45%" />
-</p>
+| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="400"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="400"/> |
 
 <p align="center">
   <img src="images/Herringbone Planetary Gearset.png" alt="Herringbone Planetary Gearset" width="60%">
