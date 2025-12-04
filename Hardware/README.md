@@ -26,13 +26,9 @@ A Python script automatically generates the pump's complete 3D CAD model using i
 
 This enables rapid iteration and fully customized pump geometries without manual CAD work.
 
-| Pump Render | Dashboard UI |
-|------------|--------------|
-| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="400"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="400"/> |
-
-<p align="center">
-  <img src="images/Herringbone Planetary Gearset.png" alt="Herringbone Planetary Gearset" width="60%">
-</p>
+| 2D Design | Spur Planetary | Herringbone Planetary
+|------------|--------------|--------------|
+| <img src="images/gear_design_2d.png" alt="2D Gear Design" height="400"/> | <img src="images/gear_design_3d.png" alt="3D Gear Design" height="400"/> | <img src="images/Herringbone Planetary Gearset.png" alt="Herringbone Planetary Gearset" height="400"/> |
 
 ---
 
