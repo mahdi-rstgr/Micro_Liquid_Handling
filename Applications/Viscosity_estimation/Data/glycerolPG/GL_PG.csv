@@ -1,4 +1,4 @@
-time_s,0.0_ml_min,0.1_ml_min,0.2_ml_min,0.3_ml_min,0.4_ml_min
+time_s,0.0_flow_ml_min,0.1_flow_ml_min,0.2_flow_ml_min,0.3_flow_ml_min,0.4_flow_ml_min
 0,0.056,0.054,-0.076,0.076,0.049
 0.5,0.057,0.047,-0.063,0.07,0.041
 1,0.052,0.041,-0.058,0.068,0.042
