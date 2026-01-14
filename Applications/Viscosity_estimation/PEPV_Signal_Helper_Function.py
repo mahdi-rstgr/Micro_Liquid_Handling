@@ -8,10 +8,10 @@ from scipy.signal import savgol_filter
 
 # Configuration parameters
 SINUSOIDAL_SEARCH_WINDOW_SEC = 12.0  # Neighborhood search window (key parameter)
-MIN_TIME_SEPARATION_SEC = 40.0      # Minimum time between cycle boundaries
+MIN_TIME_SEPARATION_SEC = 30.0      # Minimum time between cycle boundaries
 MIN_CYCLES_REQUIRED = 1             # Minimum cycles needed for successful detection
 MAX_LIQUIDS_TO_ANALYZE = 100          # Number of liquids to process per dataset
-TRIM_DURATION_SECONDS = 50          # Seconds to trim from data edges
+TRIM_DURATION_SECONDS = 100          # Seconds to trim from data edges
 FIGURE_SIZE = (28, 14)             # Visualization size
 
 # # # Dataset configuration
@@ -1105,6 +1105,220 @@ def plot_single_signal_with_cycles(ax, pump_data, liquid_type, liquid_name, cycl
         ax.legend(loc='upper right', fontsize=9)
     
     return total_cycles_for_signal
+
+def create_average_cycles_from_signal_cycles(cycles_data, pump_type=None, liquids_info=None):
+    
+    def create_single_average_cycle(liquid_data):
+        """Helper function to create average cycle for a single liquid."""
+        if not ('cycles' in liquid_data and liquid_data['cycles'] and liquid_data.get('successful', False)):
+            return None
+        
+        # Get all cycles for this liquid
+        all_cycles = liquid_data['cycles']
+        
+        # Extract flow and time data from each cycle
+        cycle_flows = []
+        cycle_times = []
+        
+        for cycle in all_cycles:
+            if 'cycle_flow' in cycle and 'cycle_time' in cycle:
+                cycle_flows.append(cycle['cycle_flow'])
+                cycle_times.append(cycle['cycle_time'])
+        
+        if not cycle_flows:
+            return None
+        
+        # Find the maximum length among all cycles
+        max_length = max(len(cycle_flow) for cycle_flow in cycle_flows)
+        
+        # Normalize all cycles to the same length using interpolation
+        normalized_flows = []
+        normalized_times = []
+        
+        for cycle_flow, cycle_time in zip(cycle_flows, cycle_times):
+            if len(cycle_flow) < max_length:
+                # Create normalized time axis from 0 to 1
+                x_old = np.linspace(0, 1, len(cycle_flow))
+                x_new = np.linspace(0, 1, max_length)
+                
+                # Interpolate flow and time data
+                flow_interpolated = np.interp(x_new, x_old, cycle_flow)
+                time_interpolated = np.interp(x_new, x_old, cycle_time)
+                
+                normalized_flows.append(flow_interpolated)
+                normalized_times.append(time_interpolated)
+            else:
+                normalized_flows.append(cycle_flow)
+                normalized_times.append(cycle_time)
+        
+        # Calculate the average cycle
+        avg_flow = np.mean(normalized_flows, axis=0)
+        avg_time = np.mean(normalized_times, axis=0)
+        
+        return {
+            'avg_flow': avg_flow,
+            'avg_time': avg_time,
+            'num_cycles': len(all_cycles),
+            'max_length': max_length,
+            'original_cycles': len(cycle_flows),
+            'flow_std': np.std(normalized_flows, axis=0),
+            'time_std': np.std(normalized_times, axis=0)
+        }
+    
+    # Main processing
+    average_cycles = {}
+    
+    # Determine which pump types to process
+    pump_types_to_process = [pump_type] if pump_type else list(cycles_data['datasets'].keys())
+    
+    for current_pump in pump_types_to_process:
+        if current_pump in cycles_data['datasets']:
+            average_cycles[current_pump] = {}
+            pump_data = cycles_data['datasets'][current_pump]
+            
+            if 'liquid_results' in pump_data:
+                for liquid_name, liquid_data in pump_data['liquid_results'].items():
+                    avg_cycle_result = create_single_average_cycle(liquid_data)
+                    
+                    if avg_cycle_result is not None:
+                        average_cycles[current_pump][liquid_name] = avg_cycle_result
+                        print(f"  {current_pump} - {liquid_name}: Created average cycle from {avg_cycle_result['original_cycles']} individual cycles (length: {avg_cycle_result['max_length']})")
+                    else:
+                        print(f"  {current_pump} - {liquid_name}: No valid cycles found")
+    
+    return average_cycles
+
+
+
+# ===================================================================
+# AVERAGE CYCLE DATASET CREATION
+# ===================================================================
+
+def create_average_cycle_dataset(average_cycles_data, average_sigmoid_results, liquids_info):
+    """
+    Create a comprehensive dataset with all average cycle features:
+    - a1, a2, a3, a4 (sigmoid position parameters)
+    - h1, h2, h3, h4 (sigmoid amplitude parameters)
+    - b1, b2, b3, b4 (sigmoid slope parameters)
+    - sample name
+    - pump_type (the pump type identifier)
+    - num_original_cycles (number of cycles averaged)
+    - duration_sec (average duration in seconds)
+    - flow_max_ml_min, flow_min_ml_min (average max/min flow in ml/min)
+    - flow_std_avg (average standard deviation across the cycle)
+    - viscosity of the sample (cP) - this is the label
+    """
+    
+    all_average_cycle_data = []
+    
+    for pump_type, pump_cycles in average_cycles_data.items():
+        
+        for liquid_name, cycle_data in pump_cycles.items():
+            # Get viscosity value from LIQUIDS_INFO
+            liquid_key = f"{liquid_name}_flow_ml_min"
+            if liquid_key in liquids_info:
+                viscosity_str = liquids_info[liquid_key]['viscosity']
+                # Extract numeric viscosity value (remove 'cP' and convert to float)
+                viscosity_cp = float(viscosity_str.replace(' cP', ''))
+            else:
+                print(f"   ⚠️ Viscosity info not found for {liquid_name}, skipping...")
+                continue
+            
+            # Get sigmoid fitting results for this liquid if available
+            sigmoid_params = None
+            sigmoid_available = False
+            if (pump_type in average_sigmoid_results and 
+                liquid_name in average_sigmoid_results[pump_type]):
+                sigmoid_data = average_sigmoid_results[pump_type][liquid_name]
+                if sigmoid_data.get('success', False):
+                    sigmoid_params = sigmoid_data['sigmoid_params']
+                    sigmoid_available = True
+            
+            # Extract average cycle data
+            avg_flow = cycle_data['avg_flow']
+            avg_time = cycle_data['avg_time']
+            flow_std = cycle_data['flow_std']
+            num_cycles = cycle_data['num_cycles']
+            
+            # Calculate features
+            duration_sec = float(avg_time[-1] - avg_time[0]) if len(avg_time) > 1 else 0.0
+            flow_max_ml_min = float(np.max(avg_flow))
+            flow_min_ml_min = float(np.min(avg_flow))
+            flow_std_avg = float(np.mean(flow_std))  # Average standard deviation across the cycle
+            
+            # Create average cycle record
+            cycle_record = {
+                'sample_name': liquid_name,
+                'pump_type': pump_type,
+                'num_original_cycles': num_cycles,
+                'duration_sec': duration_sec,
+                'flow_max_ml_min': flow_max_ml_min,
+                'flow_min_ml_min': flow_min_ml_min,
+                'flow_std_avg': flow_std_avg,
+                'viscosity_cp': viscosity_cp,
+                'has_sigmoid_fit': sigmoid_available
+            }
+            
+            # Add sigmoid parameters if available
+            if sigmoid_params is not None:
+                param_names = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', 'h1', 'h2', 'h3', 'h4']
+                for i, param_name in enumerate(param_names):
+                    cycle_record[param_name] = float(sigmoid_params[i])
+                    
+                # Add R² and RMSE from sigmoid fitting
+                if 'r_squared' in sigmoid_data:
+                    cycle_record['r_squared'] = float(sigmoid_data['r_squared'])
+                if 'rmse' in sigmoid_data:
+                    cycle_record['rmse'] = float(sigmoid_data['rmse'])
+            else:
+                # Fill with NaN if sigmoid fitting not available
+                param_names = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', 'h1', 'h2', 'h3', 'h4']
+                for param_name in param_names:
+                    cycle_record[param_name] = np.nan
+                cycle_record['r_squared'] = np.nan
+                cycle_record['rmse'] = np.nan
+            
+            all_average_cycle_data.append(cycle_record)
+    
+    # Convert to DataFrame
+    avg_cycle_dataset = pd.DataFrame(all_average_cycle_data)
+    
+    # Check if has_sigmoid_fit column should be removed (if all values are True)
+    if avg_cycle_dataset['has_sigmoid_fit'].all():
+        avg_cycle_dataset = avg_cycle_dataset.drop('has_sigmoid_fit', axis=1)
+        include_sigmoid_fit = False
+    else:
+        include_sigmoid_fit = True
+    
+    # Reorder columns for better readability
+    column_order = [
+        'sample_name', 'pump_type', 'num_original_cycles',
+        'a1', 'a2', 'a3', 'a4',
+        'h1', 'h2', 'h3', 'h4', 
+        'b1', 'b2', 'b3', 'b4',
+        'r_squared', 'rmse',
+        'duration_sec', 'flow_max_ml_min', 'flow_min_ml_min', 'flow_std_avg',
+        'viscosity_cp'
+    ]
+    
+    if include_sigmoid_fit:
+        column_order.append('has_sigmoid_fit')
+    
+    # Only include columns that exist in the DataFrame
+    existing_columns = [col for col in column_order if col in avg_cycle_dataset.columns]
+    avg_cycle_dataset = avg_cycle_dataset[existing_columns]
+    
+    print(f"\n📊 AVERAGE CYCLE DATASET CREATION SUMMARY:")
+    print(f"   🎯 Total average cycles: {len(avg_cycle_dataset)}")
+    print(f"   📈 Unique samples: {avg_cycle_dataset['sample_name'].nunique()}")
+    print(f"   🔧 Unique pump types: {avg_cycle_dataset['pump_type'].nunique()}")
+    if include_sigmoid_fit:
+        print(f"   📈 Average cycles with sigmoid fits: {avg_cycle_dataset['has_sigmoid_fit'].sum()}")
+    else:
+        print(f"   📈 All average cycles have sigmoid fits")
+    
+    return avg_cycle_dataset
+
 
 
 # ===================================================================
